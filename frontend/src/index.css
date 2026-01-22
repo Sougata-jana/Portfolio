@@ -11,6 +11,10 @@
     --transition-duration: 500ms;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply transition-colors;
     transition-duration: var(--transition-duration);
@@ -22,5 +26,23 @@
 
   .light {
     color-scheme: light;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200 dark:bg-slate-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-purple-500 dark:bg-purple-600 rounded-full;
+    transition: background-color 0.3s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-purple-600 dark:bg-purple-500;
   }
 }
