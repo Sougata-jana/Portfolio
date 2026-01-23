@@ -18,21 +18,22 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen bg-gray-100 dark:bg-slate-950 text-slate-900 dark:text-white selection:bg-purple-500/30 overflow-x-hidden transition-colors duration-500">
+      <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white selection:bg-purple-500/30 overflow-x-hidden transition-colors duration-500">
         <Navbar onOpenChat={() => setIsChatOpen(true)} />
         <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
 
-      {/* Animated Background */}
-      {/* <div className="fixed inset-0 z-0">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <motion.div
           style={{ y: backgroundY }}
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0f0c29] to-slate-950"
-        />
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600/20 blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-pink-600/20 blur-[120px] animate-pulse delay-1000" />
-        <div className="absolute top-[40%] left-[40%] w-[30%] h-[30%] rounded-full bg-blue-600/10 blur-[100px] animate-pulse delay-2000" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      </div> */}
+          className="absolute inset-0"
+        >
+          <div className="absolute top-[10%] left-[5%] w-[40%] h-[40%] rounded-full bg-purple-500/5 dark:bg-purple-600/10 blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[10%] right-[5%] w-[45%] h-[45%] rounded-full bg-pink-500/5 dark:bg-pink-600/10 blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-[50%] left-[50%] w-[35%] h-[35%] rounded-full bg-blue-500/5 dark:bg-blue-600/10 blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
+        </motion.div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDEyNywgMTI3LCAxMjcsIDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40 dark:opacity-20" />
+      </div>
 
       <main className="relative z-10">
         
