@@ -77,8 +77,8 @@ export function Home() {
 
             <div className="flex gap-4">
               {[
-                { Icon: Github, href: 'https://github.com/Sougata-web', label: 'GitHub' },
-                { Icon: Linkedin, href: 'https://linkedin.com/in/sougata-jana', label: 'LinkedIn' },
+                { Icon: Github, href: 'https://github.com/Sougata-jana', label: 'GitHub' },
+                { Icon: Linkedin, href: 'https://www.linkedin.com/in/sougata-jana-98b14828b/', label: 'LinkedIn' },
                 { Icon: Mail, href: 'mailto:janasougata198@gmail.com', label: 'Email' },
               ].map(({ Icon, href, label }) => (
                 <motion.a
