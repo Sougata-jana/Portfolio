@@ -1,11 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
 import { Sparkles, Filter } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
+
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  imageGradient: string;
+  githubUrl: string;
+  liveUrl?: string;
+  technologies: string[];
+}
 
 export function Projects() {
   const [filter, setFilter] = useState('All');
-  const categories = ['All', 'Full-Stack', 'Frontend'];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const categories = ['All', 'Full-Stack', 'Frontend', 'Backend'];
+  
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch(API_ENDPOINTS.PROJECTS);
+      const data = await response.json();
+      if (data.success) {
+        setProjects(data.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const filteredProjects = filter === 'All' 
     ? projects 
@@ -64,18 +96,27 @@ export function Projects() {
           ))}
         </motion.div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+          </div>
+        )}
+
         {/* Projects Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.title} {...project} index={index} />
-          ))}
-        </motion.div>
+        {!loading && (
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project._id || project.title} {...project} index={index} />
+            ))}
+          </motion.div>
+        )}
 
         {/* Empty State */}
-        {filteredProjects.length === 0 && (
+        {!loading && filteredProjects.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -89,47 +130,3 @@ export function Projects() {
     </section>
   );
 }
-
-// Projects Data
-const projects = [
-  {
-    title: 'Full-Stack E-Commerce Platform',
-    description:
-      'Complete e-commerce application with React frontend and admin dashboard. Backend powered by Node.js, Express.js, and MongoDB. Features Stripe payments, JWT authentication, Cloudinary image uploads, and order tracking.',
-    category: 'Full-Stack',
-    imageGradient: 'from-blue-500 via-indigo-500 to-cyan-500',
-    githubUrl: 'https://github.com/Sougata-web',
-    liveUrl: '#',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-  },
-  {
-    title: 'Video Streaming Platform',
-    description:
-      'Full-featured video sharing platform with React frontend, admin panel, and Node.js/Express backend. Includes Cloudinary storage, AI content moderation, JWT authentication with OTP, and MongoDB database.',
-    category: 'Full-Stack',
-    imageGradient: 'from-purple-500 via-fuchsia-500 to-pink-500',
-    githubUrl: 'https://github.com/Sougata-web',
-    liveUrl: '#',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Cloudinary', 'JWT'],
-  },
-  {
-    title: 'Personal Portfolio',
-    description:
-      'Modern portfolio website to showcase projects, skills, and contact information. Built with React.js and Tailwind CSS for a clean, responsive design.',
-    category: 'Frontend',
-    imageGradient: 'from-emerald-500 via-green-500 to-teal-500',
-    githubUrl: 'https://github.com/Sougata-web',
-    liveUrl: '#',
-    technologies: ['React', 'Tailwind CSS', 'TypeScript'],
-  },
-  {
-    title: 'Gemini AI Clone',
-    description:
-      'Gemini AI UI clone developed using React.js. Features responsive interface with dynamic UI updates, showcasing modern frontend development skills.',
-    category: 'Frontend',
-    imageGradient: 'from-orange-500 via-red-500 to-rose-500',
-    githubUrl: 'https://github.com/Sougata-web',
-    liveUrl: '#',
-    technologies: ['React', 'CSS', 'API Integration'],
-  },
-];
