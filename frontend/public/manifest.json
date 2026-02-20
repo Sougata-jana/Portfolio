@@ -1,0 +1,20 @@
+{
+  "name": "Sougata Jana - Portfolio",
+  "short_name": "SJ Portfolio",
+  "description": "Full Stack Developer Portfolio with AI Chat, Blog, and Projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "business", "productivity"],
+  "lang": "en-US"
+}
