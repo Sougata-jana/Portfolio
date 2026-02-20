@@ -52,7 +52,7 @@ export function About() {
             </p>
             <p className="text-slate-700 dark:text-white/70 leading-relaxed">
               Currently pursuing B.Tech in Computer Science and Engineering at
-              Haldia Institute of Technology. I'm constantly learning new
+              Sanaka Educational Trust’s Group of Institutions, MAKAUT. I'm constantly learning new
               technologies and improving my skills to stay updated with industry
               trends.
             </p>

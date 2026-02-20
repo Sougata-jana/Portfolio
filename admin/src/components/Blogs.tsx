@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Eye, CheckCircle, XCircle } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, CheckCircle, XCircle, Upload, X } from 'lucide-react';
 import { api, API_ENDPOINTS } from '../config/api';
 
 interface Blog {
@@ -21,6 +21,7 @@ export function Blogs() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -46,25 +47,58 @@ export function Blogs() {
     }
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size should be less than 5MB');
+        return;
+      }
+
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setImagePreview(base64String);
+        setFormData({ ...formData, imageUrl: base64String });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImagePreview('');
+    setFormData({ ...formData, imageUrl: '' });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const blogData = {
         ...formData,
-        tags: formData.tags.split(',').map(t => t.trim()),
+        tags: formData.tags.split(',').map(t => t.trim()).filter(t => t),
       };
 
       if (editingBlog) {
-        await api.put(API_ENDPOINTS.BLOG_BY_ID(editingBlog._id), blogData);
+        const response = await api.put(API_ENDPOINTS.BLOG_BY_ID(editingBlog._id), blogData);
+        alert(response.data.message || 'Blog updated successfully!');
       } else {
-        await api.post(API_ENDPOINTS.BLOGS, blogData);
+        const response = await api.post(API_ENDPOINTS.BLOGS, blogData);
+        alert(response.data.message || 'Blog created successfully!');
       }
 
       fetchBlogs();
       resetForm();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving blog:', error);
-      alert('Failed to save blog');
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to save blog';
+      alert(`Error: ${errorMessage}`);
     }
   };
 
@@ -104,6 +138,7 @@ export function Blogs() {
       imageUrl: blog.imageUrl || '',
       published: blog.published,
     });
+    setImagePreview(blog.imageUrl || '');
     setShowForm(true);
   };
 
@@ -117,6 +152,7 @@ export function Blogs() {
       imageUrl: '',
       published: false,
     });
+    setImagePreview('');
     setEditingBlog(null);
     setShowForm(false);
   };
@@ -155,6 +191,53 @@ export function Blogs() {
             {editingBlog ? 'Edit Blog' : 'Add New Blog'}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Image Upload Section - At the Top */}
+            <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 bg-gray-50">
+              <label className="block text-sm font-medium mb-3">Featured Image</label>
+              
+              {imagePreview ? (
+                <div className="relative">
+                  <img
+                    src={imagePreview}
+                    alt="Blog preview"
+                    className="w-full h-64 object-cover rounded-lg shadow-md"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-lg"
+                    title="Remove image"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <div className="mt-3 text-sm text-gray-600 text-center">
+                    Click the X to remove and upload a different image
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <Upload className="w-12 h-12 mx-auto text-gray-400 mb-3" />
+                  <label className="cursor-pointer">
+                    <span className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors inline-block">
+                      Choose Image
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Upload a featured image for your blog (Max 5MB)
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Recommended size: 1200x630px for best results
+                  </p>
+                </div>
+              )}
+            </div>
+
             <div>
               <label className="block text-sm font-medium mb-2">Title</label>
               <input
@@ -214,15 +297,6 @@ export function Blogs() {
                 />
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Image URL (optional)</label>
-              <input
-                type="url"
-                value={formData.imageUrl}
-                onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -263,7 +337,18 @@ export function Blogs() {
             transition={{ delay: index * 0.05 }}
             className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
           >
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between gap-4">
+              {/* Blog Image Thumbnail */}
+              {blog.imageUrl && (
+                <div className="flex-shrink-0">
+                  <img
+                    src={blog.imageUrl}
+                    alt={blog.title}
+                    className="w-32 h-32 object-cover rounded-lg"
+                  />
+                </div>
+              )}
+              
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-xl font-bold text-gray-900">{blog.title}</h3>
@@ -301,7 +386,8 @@ export function Blogs() {
                   </div>
                 )}
               </div>
-              <div className="flex gap-2 ml-4">
+              
+              <div className="flex gap-2 ml-4 flex-shrink-0">
                 <button
                   onClick={() => handleTogglePublish(blog)}
                   className={`p-2 rounded-lg transition-colors ${

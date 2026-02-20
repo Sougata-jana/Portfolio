@@ -1,5 +1,8 @@
 // API Configuration
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string) || 'http://localhost:5000';
+// In production on Vercel, VITE_API_URL can be empty to use the same domain
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string) || (
+  typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000'
+);
 
 export const API_ENDPOINTS = {
   // AI Chat

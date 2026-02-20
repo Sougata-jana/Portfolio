@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Phone, MapPin, Heart, Sparkles, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle, MapPin, Heart, Sparkles, ArrowUp } from 'lucide-react';
 
 export function Footer() {
   const scrollToTop = () => {
@@ -32,7 +32,7 @@ export function Footer() {
 
   const contactInfo = [
     { Icon: Mail, text: 'janasougata198@gmail.com', href: 'mailto:janasougata198@gmail.com' },
-    { Icon: Phone, text: '+91 7821808132', href: 'tel:+917821808132' },
+    { Icon: MessageCircle, text: '+91 7821808132', href: 'https://wa.me/917821808132' },
     { Icon: MapPin, text: 'West Bengal, India' },
   ];
 
@@ -106,13 +106,15 @@ export function Footer() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.a>
               <motion.a
-                href="tel:+917821808132"
+                href="https://wa.me/917810808132"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold border-2 border-slate-300 dark:border-slate-600 hover:border-purple-500 dark:hover:border-purple-500 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold border-2 border-slate-300 dark:border-slate-600 hover:border-green-500 dark:hover:border-green-500 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
               >
-                <Phone size={20} />
-                Call Me
+                <MessageCircle size={20} />
+                WhatsApp
               </motion.a>
             </div>
 

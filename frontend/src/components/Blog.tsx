@@ -62,7 +62,11 @@ export function Blog() {
   const handleBlogClick = (blog: Blog) => {
     setSelectedBlog(blog);
     incrementViews(blog._id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to blog section instantly when opening blog detail
+    const blogSection = document.getElementById('blog');
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
   };
 
   const filteredBlogs = blogs.filter(blog => {

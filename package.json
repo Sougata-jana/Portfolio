@@ -1,0 +1,26 @@
+{
+  "name": "modern-portfolio",
+  "version": "1.0.0",
+  "description": "Modern Portfolio with AI Chat, Blog, and Project Management",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../admin && npm install && cd ../backend && npm install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "vercel-build": "npm run build:frontend"
+  },
+  "keywords": [
+    "portfolio",
+    "vercel",
+    "react",
+    "typescript",
+    "express",
+    "mongodb"
+  ],
+  "author": "Sougata Jana",
+  "license": "ISC"
+}
