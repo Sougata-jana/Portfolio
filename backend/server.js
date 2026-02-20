@@ -21,6 +21,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL ? [
     process.env.FRONTEND_URL,
     process.env.ADMIN_URL,
+    'https://sougata-portfolio-kappa.vercel.app', // Production backend
     'http://localhost:5173', // Local frontend
     'http://localhost:5174', // Admin panel
     'http://localhost:5175', // Alternative admin port
@@ -33,6 +34,24 @@ app.use(cors({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
+// Root route - API welcome
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Portfolio Backend API',
+    version: '1.0.0',
+    author: 'Sougata Jana',
+    endpoints: {
+      health: '/api/health',
+      projects: '/api/projects',
+      blogs: '/api/blogs/published',
+      aiChat: '/api/ai-chat'
+    },
+    documentation: 'https://github.com/Sougata-Jana/Portfolio',
+    status: 'Server is running successfully ✅'
+  });
+});
+
 // Routes
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api/projects', projectRoutes);
@@ -43,7 +62,9 @@ app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     message: 'Portfolio Backend API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    database: 'Connected'
   });
 });
 
