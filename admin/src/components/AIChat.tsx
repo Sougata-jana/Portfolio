@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { MessageSquare, User, Bot } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 
 export function AIChat() {
   return (

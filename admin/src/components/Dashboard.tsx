@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FolderGit2, BookOpen, MessageSquare, TrendingUp } from 'lucide-react';
 import { api, API_ENDPOINTS } from '../config/api';
