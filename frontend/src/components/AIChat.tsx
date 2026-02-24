@@ -2,15 +2,81 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Bot, User, Sparkles, MessageSquare } from 'lucide-react';
 import { API_ENDPOINTS } from '../config/api';
+
 interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
 }
+
 interface AIChatProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+// Component to format and style AI messages
+const FormattedMessage = ({ content }: { content: string }) => {
+  // Format the message with better styling
+  const formatText = (text: string) => {
+    // Split by newlines first
+    const lines = text.split('\n');
+    
+    return lines.map((line, index) => {
+      // Skip empty lines
+      if (!line.trim()) return <br key={index} />;
+      
+      // Check for bold patterns **text** or headings with ###
+      if (line.includes('**')) {
+        const parts = line.split(/(\*\*.*?\*\*)/g);
+        return (
+          <p key={index} className="mb-2">
+            {parts.map((part, i) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return (
+                  <strong key={i} className="font-bold text-purple-200">
+                    {part.slice(2, -2)}
+                  </strong>
+                );
+              }
+              return <span key={i}>{part}</span>;
+            })}
+          </p>
+        );
+      }
+      
+      // Check for bullet points (▹ or • or -)
+      if (line.trim().match(/^[▹•\-\*]\s/)) {
+        return (
+          <div key={index} className="flex gap-2 mb-1.5 ml-2">
+            <span className="text-purple-400 mt-0.5 flex-shrink-0">▸</span>
+            <span className="text-white/85">{line.trim().replace(/^[▹•\-\*]\s/, '')}</span>
+          </div>
+        );
+      }
+      
+      // Check for numbered lists
+      if (line.trim().match(/^\d+\./)) {
+        return (
+          <div key={index} className="flex gap-2 mb-1.5 ml-2">
+            <span className="text-purple-400 font-semibold flex-shrink-0">
+              {line.trim().match(/^\d+\./)?.[0]}
+            </span>
+            <span className="text-white/85">{line.trim().replace(/^\d+\.\s*/, '')}</span>
+          </div>
+        );
+      }
+      
+      // Regular paragraphs
+      return (
+        <p key={index} className="mb-2 text-white/90 leading-relaxed">
+          {line}
+        </p>
+      );
+    });
+  };
+
+  return <div className="space-y-1">{formatText(content)}</div>;
+};
 export function AIChat({
   isOpen,
   onClose
@@ -19,7 +85,7 @@ export function AIChat({
   const [messages, setMessages] = useState<Message[]>([{
     id: '1',
     role: 'assistant',
-    content: "Hi! I'm Sougata's AI assistant. Ask me anything about his skills, experience, or projects!"
+    content: "👋 Hi! I'm Sougata's AI assistant.\n\nFeel free to ask me about:\n▹ Skills & Technologies\n▹ Projects & Work\n▹ Experience & Education\n▹ Contact Information\n\nWhat would you like to know?"
   }]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -142,8 +208,12 @@ export function AIChat({
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-white/10 text-white' : 'bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30'}`}>
                     {msg.role === 'user' ? <User size={14} /> : <Sparkles size={14} />}
                   </div>
-                  <div className={`p-3 rounded-2xl max-w-[80%] text-sm leading-relaxed ${msg.role === 'user' ? 'bg-white text-slate-900 rounded-tr-sm' : 'bg-white/5 border border-white/10 text-white/90 rounded-tl-sm'}`}>
-                    {msg.content}
+                  <div className={`p-3.5 rounded-2xl max-w-[80%] text-sm leading-relaxed ${msg.role === 'user' ? 'bg-white text-slate-900 rounded-tr-sm font-medium' : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-purple-500/20 text-white/90 rounded-tl-sm shadow-lg shadow-purple-500/5'}`}>
+                    {msg.role === 'assistant' ? (
+                      <FormattedMessage content={msg.content} />
+                    ) : (
+                      msg.content
+                    )}
                   </div>
                 </motion.div>)}
               {isTyping && <motion.div initial={{

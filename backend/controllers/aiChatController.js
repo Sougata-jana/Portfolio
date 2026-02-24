@@ -239,59 +239,59 @@ function getFallbackResponse(message) {
 
   // Greetings
   if (lowerMessage.match(/^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/)) {
-    return "Hello! 👋 I'm Sougata's AI assistant. I can tell you about his skills, projects, experience, education, and how to contact him. What would you like to know?";
+    return "👋 Hello! I'm Sougata's AI assistant.\n\nI can help you learn about:\n▹ Technical Skills & Stack\n▹ Featured Projects\n▹ Work Experience\n▹ Education & Achievements\n▹ Contact Information\n\nWhat would you like to know?";
   }
 
   // Skills and Technologies
   if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack')) {
-    return "Sougata specializes in MERN stack development - MongoDB, Express.js, React.js, and Node.js. He's also proficient in:\n\n• Frontend: React.js, HTML, CSS, Tailwind CSS, JavaScript, TypeScript\n• Backend: Node.js, Express.js\n• Database: MongoDB\n• Tools: Git, Postman, VS Code\n• Other: RESTful APIs, JWT Authentication, Cloudinary, Stripe Integration";
+    return "💻 **Sougata's Technical Skills:**\n\n**Frontend Development:**\n▹ React.js, Next.js, TypeScript\n▹ HTML5, CSS3, Tailwind CSS\n▹ Framer Motion, Redux\n\n**Backend Development:**\n▹ Node.js, Express.js\n▹ RESTful APIs, GraphQL\n▹ JWT Authentication, WebSockets\n\n**Database:**\n▹ MongoDB, PostgreSQL, MySQL\n▹ Mongoose, Prisma, Redis\n\n**DevOps & Cloud:**\n▹ AWS, Docker, Vercel, Netlify\n▹ GitHub Actions, CI/CD";
   }
 
   // Projects
   if (lowerMessage.includes('project')) {
-    return "Sougata has built several impressive projects:\n\n1. **Full-Stack E-Commerce Platform** - Complete e-commerce with Stripe payments, JWT auth, and Cloudinary uploads\n\n2. **Video Streaming Platform** - Full-featured platform with video upload/playback, AI moderation, and social features\n\n3. **Personal Portfolio** - Modern responsive design with React and Tailwind CSS\n\n4. **Gemini AI Clone** - AI UI clone with dynamic updates\n\nCheck out the Projects section to see more details!";
+    return "🚀 **Featured Projects:**\n\n**1. Full-Stack E-Commerce Platform**\n▹ Complete shopping experience with Stripe payments\n▹ JWT authentication & Cloudinary uploads\n▹ Tech: React, Node.js, Express, MongoDB\n\n**2. Video Streaming Platform**\n▹ Video upload/playback with social features\n▹ AI content moderation & JWT auth\n▹ Tech: React, Node.js, MongoDB, Cloudinary\n\n**3. Personal Portfolio**\n▹ Modern responsive design\n▹ Tech: React.js, Tailwind CSS\n\n**4. Gemini AI Clone**\n▹ AI UI with dynamic updates\n▹ Tech: React.js\n\nCheck out the Projects section for more details!";
   }
 
   // Experience and Internship
   if (lowerMessage.includes('experience') || lowerMessage.includes('intern') || lowerMessage.includes('work')) {
-    return "Sougata completed a MERN Stack Development internship at **Zidio Technologies** (April-May 2025, Remote) where he:\n\n• Developed full-stack web applications using MERN stack\n• Built responsive frontend components with React.js\n• Created and tested RESTful APIs using Node.js and Express.js\n• Integrated frontend with backend services\n• Used Git for version control";
+    return "💼 **Work Experience:**\n\n**MERN Stack Development Intern**\nZidio Technologies • Remote\nApril 2025 - May 2025\n\n**Key Achievements:**\n▹ Developed full-stack web applications using MERN stack\n▹ Built responsive frontend components with React.js\n▹ Created and tested RESTful APIs using Node.js\n▹ Integrated frontend with backend services\n▹ Implemented Git version control workflows";
   }
 
   // Education
   if (lowerMessage.includes('education') || lowerMessage.includes('study') || lowerMessage.includes('college') || lowerMessage.includes('university')) {
-    return "Sougata is currently pursuing **B.Tech in Computer Science and Engineering** at Haldia Institute of Technology, MAKAUT (2022-2026) with a SGPA of 6.23. He completed his Higher Secondary (Class XII) from Deshbandhubarh United High School, West Bengal with 78%.";
+    return "🎓 **Education:**\n\n**B.Tech in Computer Science and Engineering**\nHaldia Institute of Technology, MAKAUT\n2022 - 2026 • SGPA: 6.23 (Till 6th Semester)\n\n**Higher Secondary (Class XII)**\nDeshbandhubarh United High School\nWest Bengal, India • 78%";
   }
 
   // Contact Information
   if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach') || lowerMessage.includes('phone') || lowerMessage.includes('linkedin') || lowerMessage.includes('github')) {
-    return "You can reach Sougata through:\n\n• Email: janasougata198@gmail.com\n• Phone: +91 7821808132\n• GitHub: https://github.com/Sougata-web\n• LinkedIn: https://linkedin.com/in/sougata-jana";
+    return "📧 **Get in Touch:**\n\n**Email:**\njanasougata198@gmail.com\n\n**Phone:**\n+91 7821808132\n\n**GitHub:**\nhttps://github.com/Sougata-web\n\n**LinkedIn:**\nhttps://linkedin.com/in/sougata-jana\n\nFeel free to reach out for collaborations or opportunities!";
   }
 
   // About/Who is Sougata
   if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('tell me')) {
-    return "Sougata Jana is a passionate Full-Stack Web Developer specializing in MERN stack. He's currently pursuing B.Tech in Computer Science and has completed an internship at Zidio Technologies. Sougata builds scalable web applications with modern technologies and has a strong portfolio of projects including e-commerce platforms and video streaming applications.";
+    return "👨‍💻 **About Sougata Jana:**\n\nSougata is a passionate **Full-Stack Web Developer** specializing in MERN stack development.\n\n**Current Status:**\n▹ B.Tech Student in Computer Science\n▹ Completed internship at Zidio Technologies\n▹ Building innovative full-stack applications\n\n**Expertise:**\n▹ MongoDB, Express.js, React.js, Node.js\n▹ Modern web technologies & cloud services\n▹ Scalable application architecture\n\n**Focus:**\nCreating beautiful, functional web applications with clean code and best practices.";
   }
 
   // Achievements
   if (lowerMessage.includes('achievement') || lowerMessage.includes('award') || lowerMessage.includes('hackathon')) {
-    return "Sougata's achievements include:\n\n• Participated in Hackathon 2024\n• Completed Web Development Internship at Zidio Technologies\n• Built multiple production-ready full-stack applications\n• Strong problem-solving and teamwork skills\n• Passionate about continuous learning and innovation";
+    return "🏆 **Achievements & Highlights:**\n\n**Hackathon 2024**\n▹ Participated in collaborative problem-solving\n▹ Built innovative solutions under time constraints\n\n**Internship Success**\n▹ Completed MERN Stack internship at Zidio Technologies\n▹ Hands-on experience with production applications\n\n**Project Portfolio**\n▹ Multiple production-ready full-stack applications\n▹ Passionate about continuous learning\n▹ Strong problem-solving and teamwork skills";
   }
 
   // Frontend specific
   if (lowerMessage.includes('frontend') || lowerMessage.includes('react')) {
-    return "Sougata is proficient in frontend development with React.js, HTML, CSS, Tailwind CSS, JavaScript, and TypeScript. He builds responsive, modern user interfaces and has experience with state management, component architecture, and UI/UX best practices.";
+    return "🎨 **Frontend Expertise:**\n\n**Core Technologies:**\n▹ React.js with Hooks & Context API\n▹ TypeScript for type safety\n▹ Tailwind CSS for modern styling\n\n**Advanced Skills:**\n▹ Framer Motion for animations\n▹ Redux for state management\n▹ Responsive design principles\n▹ Component architecture\n▹ UI/UX best practices\n\nBuilding beautiful, performant user interfaces!";
   }
 
   // Backend specific
   if (lowerMessage.includes('backend') || lowerMessage.includes('node') || lowerMessage.includes('express') || lowerMessage.includes('api')) {
-    return "Sougata specializes in backend development using Node.js and Express.js. He creates RESTful APIs, implements authentication with JWT, handles file uploads with Cloudinary, and integrates payment systems like Stripe. He's experienced with MongoDB for database management.";
+    return "⚙️ **Backend Development:**\n\n**Technologies:**\n▹ Node.js & Express.js\n▹ RESTful API design\n▹ GraphQL implementation\n\n**Key Skills:**\n▹ JWT Authentication\n▹ File uploads with Cloudinary\n▹ Payment integration (Stripe)\n▹ WebSocket real-time features\n▹ MongoDB database management\n\nCreating robust, scalable backend systems!";
   }
 
   // Database
   if (lowerMessage.includes('database') || lowerMessage.includes('mongodb')) {
-    return "Sougata works with MongoDB, a NoSQL database, for building scalable applications. He's experienced in designing schemas, handling CRUD operations, and optimizing database queries for performance.";
+    return "🗄️ **Database Expertise:**\n\n**Primary Database:**\nMongoDB (NoSQL)\n\n**Skills:**\n▹ Schema design & optimization\n▹ CRUD operations\n▹ Query optimization\n▹ Aggregation pipelines\n▹ Mongoose ODM\n\n**Also familiar with:**\n▹ PostgreSQL, MySQL (SQL)\n▹ Redis for caching\n▹ Prisma ORM";
   }
 
   // Default response
-  return "I'm Sougata's AI assistant! I can help you learn about his skills, projects, work experience, education, and achievements. You can also ask me how to contact him. What would you like to know?";
+  return "🤖 I'm here to help!\n\n**Ask me about:**\n▹ Technical Skills & Technologies\n▹ Projects & Portfolio\n▹ Work Experience\n▹ Education & Achievements\n▹ How to Contact Sougata\n\nWhat would you like to know?";
 }
