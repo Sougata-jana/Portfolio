@@ -57,7 +57,9 @@ export function Home() {
 
             <div className="flex flex-wrap gap-4 mb-8">
               <motion.a
-                href="mailto:janasougata198@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&to=janasougata198@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold shadow-lg shadow-purple-500/20 border border-white/20 backdrop-blur-sm"
@@ -79,7 +81,7 @@ export function Home() {
               {[
                 { Icon: Github, href: 'https://github.com/Sougata-jana', label: 'GitHub' },
                 { Icon: Linkedin, href: 'https://www.linkedin.com/in/sougata-jana-98b14828b/', label: 'LinkedIn' },
-                { Icon: Mail, href: 'mailto:janasougata198@gmail.com', label: 'Email' },
+                { Icon: Mail, href: 'https://mail.google.com/mail/?view=cm&to=janasougata198@gmail.com', label: 'Email' },
               ].map(({ Icon, href, label }) => (
                 <motion.a
                   key={label}

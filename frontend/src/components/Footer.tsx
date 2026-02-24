@@ -24,14 +24,14 @@ export function Footer() {
     },
     { 
       Icon: Mail, 
-      href: 'mailto:janasougata198@gmail.com',
+      href: 'https://mail.google.com/mail/?view=cm&to=janasougata198@gmail.com',
       label: 'Email',
       color: 'hover:bg-purple-600 hover:text-white'
     },
   ];
 
   const contactInfo = [
-    { Icon: Mail, text: 'janasougata198@gmail.com', href: 'mailto:janasougata198@gmail.com' },
+    { Icon: Mail, text: 'janasougata198@gmail.com', href: 'https://mail.google.com/mail/?view=cm&to=janasougata198@gmail.com' },
     { Icon: MessageCircle, text: '+91 7821808132', href: 'https://wa.me/917810808132' },
     { Icon: MapPin, text: 'West Bengal, India' },
   ];
@@ -94,7 +94,9 @@ export function Footer() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 relative z-10">
               <motion.a
-                href="mailto:janasougata198@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&to=janasougata198@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-lg hover:shadow-xl transition-all relative overflow-hidden"
