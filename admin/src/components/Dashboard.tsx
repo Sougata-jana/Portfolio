@@ -31,8 +31,8 @@ export function Dashboard() {
       ]);
 
       const blogs = blogsRes.data.data || [];
-      const publishedBlogs = blogs.filter((blog: any) => blog.published);
-      const totalViews = blogs.reduce((sum: number, blog: any) => sum + (blog.views || 0), 0);
+      const publishedBlogs = blogs.filter((blog: { published: boolean }) => blog.published);
+      const totalViews = blogs.reduce((sum: number, blog: { views?: number }) => sum + (blog.views || 0), 0);
 
       setStats({
         projects: projectsRes.data.data?.length || 0,

@@ -1,6 +1,5 @@
-import React from 'react';
-import { LayoutDashboard, FolderGit2, BookOpen, MessageSquare, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { LayoutDashboard, FolderGit2, BookOpen, MessageSquare, Menu, X } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;

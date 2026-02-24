@@ -95,9 +95,10 @@ export function Blogs() {
 
       fetchBlogs();
       resetForm();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error saving blog:', error);
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to save blog';
+      const err = error as { response?: { data?: { message?: string } }; message?: string };
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to save blog';
       alert(`Error: ${errorMessage}`);
     }
   };

@@ -43,9 +43,10 @@ export function Projects() {
       setError(null);
       const response = await api.get(API_ENDPOINTS.PROJECTS);
       setProjects(response.data.data || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching projects:', error);
-      setError(error.response?.data?.message || 'Failed to fetch projects. Please ensure backend is running.');
+      const err = error as { response?: { data?: { message?: string } } };
+      setError(err.response?.data?.message || 'Failed to fetch projects. Please ensure backend is running.');
     } finally {
       setLoading(false);
     }
@@ -84,9 +85,10 @@ export function Projects() {
       
       // Clear success message after 3 seconds
       setTimeout(() => setSuccess(null), 3000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error saving project:', error);
-      setError(error.response?.data?.message || 'Failed to save project. Please check your input and try again.');
+      const err = error as { response?: { data?: { message?: string } } };
+      setError(err.response?.data?.message || 'Failed to save project. Please check your input and try again.');
     } finally {
       setSubmitting(false);
     }
@@ -101,9 +103,10 @@ export function Projects() {
       setSuccess('Project deleted successfully!');
       await fetchProjects();
       setTimeout(() => setSuccess(null), 3000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting project:', error);
-      setError(error.response?.data?.message || 'Failed to delete project');
+      const err = error as { response?: { data?: { message?: string } } };
+      setError(err.response?.data?.message || 'Failed to delete project');
     }
   };
 
