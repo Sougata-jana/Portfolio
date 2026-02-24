@@ -27,8 +27,8 @@ You are an AI assistant for Sougata Jana's portfolio website.
 
 ABOUT SOUGATA JANA:
 - Full-Stack Web Developer specializing in MERN stack (MongoDB, Express.js, React.js, Node.js)
-- Currently pursuing B.Tech in Computer Science and Engineering at Haldia Institute of Technology, MAKAUT (2022-2026)
-- SGPA: 6.23 (Till 6th Semester)
+- Currently pursuing B.Tech in Computer Science and Engineering at Sanaka Educational Trust's Group of Institutions, MAKAUT (2022-2026)
+- SGPA: 7.67 (Till 7th Semester)
 - Email: janasougata198@gmail.com
 - Phone: +91 7821808132
 - GitHub: https://github.com/Sougata-web
@@ -39,15 +39,15 @@ EXPERIENCE:
   * Developed full-stack web applications using MERN stack
   * Built responsive frontend components with React.js
   * Created and tested RESTful APIs using Node.js and Express.js
-  * Integrated frontend with backend services
-  * Used Git for version control
+  * Integrated frontend with backend services and performed API testing using Postman
+  * Used Git for version control and followed collaborative development workflows
 
 SKILLS:
-- Frontend: React.js, HTML, CSS, Tailwind CSS, JavaScript, TypeScript
-- Backend: Node.js, Express.js
-- Database: MongoDB
+- Frontend: React.js, Next.js, TypeScript, HTML, CSS, Tailwind CSS, JavaScript, Framer Motion, Redux
+- Backend: Node.js, Express.js, RESTful APIs, GraphQL, JWT, WebSockets
+- Database: MongoDB, PostgreSQL, MySQL, Redis, Mongoose, Prisma
+- DevOps & Cloud: AWS, Docker, GitHub Actions, Vercel, Netlify, CI/CD
 - Tools: Git, Postman, VS Code
-- Other: RESTful APIs, JWT Authentication, Cloudinary, Stripe Integration
 
 PROJECTS:
 1. Full-Stack E-Commerce Platform
@@ -65,6 +65,7 @@ PROJECTS:
 3. Personal Portfolio
    - Modern portfolio with React.js and Tailwind CSS
    - Responsive design showcasing projects and skills
+   - Features: AI chat assistant, admin panel, blog system
 
 4. Gemini AI Clone
    - AI UI clone with React.js
@@ -77,7 +78,8 @@ ACHIEVEMENTS:
 - Passionate about continuous learning and building innovative projects
 
 EDUCATION:
-- B.Tech in Computer Science and Engineering, Haldia Institute of Technology, MAKAUT (2022-2026)
+- B.Tech in Computer Science and Engineering, Sanaka Educational Trust's Group of Institutions, MAKAUT (2022-2026), SGPA: 7.67 (Till 7th Semester)
+- Higher Secondary (Class XII), Deshdattabarh United High School (HS), West Bengal, India, 78%
 - Higher Secondary (Class XII), Deshbandhubarh United High School, West Bengal (78%)
 
 Answer questions about Sougata's skills, experience, projects, and background in a friendly, professional manner.
@@ -259,7 +261,7 @@ function getFallbackResponse(message) {
 
   // Education
   if (lowerMessage.includes('education') || lowerMessage.includes('study') || lowerMessage.includes('college') || lowerMessage.includes('university')) {
-    return "🎓 **Education:**\n\n**B.Tech in Computer Science and Engineering**\nHaldia Institute of Technology, MAKAUT\n2022 - 2026 • SGPA: 6.23 (Till 6th Semester)\n\n**Higher Secondary (Class XII)**\nDeshbandhubarh United High School\nWest Bengal, India • 78%";
+    return "🎓 **Education:**\n\n**B.Tech in Computer Science and Engineering**\nSanaka Educational Trust's Group of Institutions, MAKAUT\n2022 - 2026 • SGPA: 7.67 (Till 7th Semester)\n\n**Higher Secondary (Class XII)**\nDeshdattabarh United High School (HS)\nWest Bengal, India • 78%";
   }
 
   // Contact Information
@@ -269,7 +271,7 @@ function getFallbackResponse(message) {
 
   // About/Who is Sougata
   if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('tell me')) {
-    return "👨‍💻 **About Sougata Jana:**\n\nSougata is a passionate **Full-Stack Web Developer** specializing in MERN stack development.\n\n**Current Status:**\n▹ B.Tech Student in Computer Science\n▹ Completed internship at Zidio Technologies\n▹ Building innovative full-stack applications\n\n**Expertise:**\n▹ MongoDB, Express.js, React.js, Node.js\n▹ Modern web technologies & cloud services\n▹ Scalable application architecture\n\n**Focus:**\nCreating beautiful, functional web applications with clean code and best practices.";
+    return "👨‍💻 **About Sougata Jana:**\n\nSougata is a passionate **Full-Stack Web Developer** specializing in MERN stack development.\n\n**Current Status:**\n▹ B.Tech Student in Computer Science at Sanaka Educational Trust's Group of Institutions, MAKAUT\n▹ SGPA: 7.67 (Till 7th Semester)\n▹ Completed internship at Zidio Technologies\n▹ Building innovative full-stack applications\n\n**Expertise:**\n▹ MongoDB, Express.js, React.js, Node.js\n▹ Modern web technologies & cloud services\n▹ Scalable application architecture\n\n**Focus:**\nCreating beautiful, functional web applications with clean code and best practices.";
   }
 
   // Achievements
