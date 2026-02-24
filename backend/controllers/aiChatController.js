@@ -3,16 +3,19 @@ import ChatHistory from '../models/ChatHistory.js';
 
 // Initialize OpenAI only if API key is available
 let openai = null;
+let openaiAvailable = false;
 
 if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here') {
   try {
     openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
     });
+    openaiAvailable = true;
     console.log('✅ OpenAI initialized successfully');
   } catch (error) {
     console.error('❌ OpenAI initialization failed:', error.message);
     openai = null;
+    openaiAvailable = false;
   }
 } else {
   console.warn('⚠️  OpenAI API key not configured. Using fallback responses.');
@@ -93,9 +96,10 @@ export const chatWithAI = async (req, res) => {
       });
     }
 
-    // Use fallback if OpenAI is not initialized
-    if (!openai) {
+    // Use fallback if OpenAI is not initialized or not available
+    if (!openai || !openaiAvailable) {
       const session = sessionId || `session_${Date.now()}`;
+      console.log('ℹ️  Using fallback response for:', message.substring(0, 50));
       return res.json({
         success: true,
         message: getFallbackResponse(message),
@@ -130,20 +134,32 @@ export const chatWithAI = async (req, res) => {
       }))
     ];
 
-    // Call OpenAI API with timeout
-    const completion = await Promise.race([
-      openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7
-      }),
-      new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('OpenAI request timeout')), 30000)
-      )
-    ]);
+    // Call OpenAI API with timeout and better error handling
+    let aiResponse;
+    try {
+      const completion = await Promise.race([
+        openai.chat.completions.create({
+          model: 'gpt-3.5-turbo',
+          messages: messages,
+          max_tokens: 500,
+          temperature: 0.7
+        }),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('OpenAI request timeout')), 30000)
+        )
+      ]);
 
-    const aiResponse = completion.choices[0].message.content;
+      aiResponse = completion.choices[0].message.content;
+    } catch (apiError) {
+      // If OpenAI API call fails, use fallback immediately
+      console.log('⚠️  OpenAI API call failed, using fallback:', apiError.message);
+      return res.json({
+        success: true,
+        message: getFallbackResponse(message),
+        sessionId: session,
+        usedFallback: true
+      });
+    }
 
     // Add AI response to history
     chatHistory.messages.push({
