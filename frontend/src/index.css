@@ -20,13 +20,6 @@
     transition-duration: var(--transition-duration);
   }
 
-  /* Hide default cursor on desktop for custom cursor */
-  @media (min-width: 768px) {
-    body, a, button, input, textarea {
-      cursor: none !important;
-    }
-  }
-
   .dark {
     color-scheme: dark;
   }

@@ -11,7 +11,6 @@ import { Blog } from './components/Blog';
 import { Footer } from './components/Footer';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Loader } from './components/Loader';
-import { CustomCursor } from './components/CustomCursor';
 import { FloatingParticles } from './components/FloatingParticles';
 import { MagneticSocialBubble } from './components/MagneticSocialBubble';
 import { ScrollProgress } from './components/ScrollProgress';
@@ -34,9 +33,6 @@ export function App() {
   return (
     <ThemeProvider>
       <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white selection:bg-purple-500/30 overflow-x-hidden transition-colors duration-500">
-        {/* 🌟 NEW: Custom Cursor with Particle Trail */}
-        <CustomCursor />
-        
         {/* 🌟 NEW: Interactive Floating Particles Background */}
         <FloatingParticles />
         

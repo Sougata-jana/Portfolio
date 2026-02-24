@@ -37,10 +37,10 @@ export function MagneticSocialBubble() {
   }, [mousePosition, isExpanded]);
 
   const socials = [
-    { icon: Github, href: 'https://github.com/Sougata-web', label: 'GitHub', color: 'from-gray-600 to-gray-800' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/sougata-jana', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
+    { icon: Github, href: 'https://github.com/Sougata-jana', label: 'GitHub', color: 'from-gray-600 to-gray-800' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/sougata-jana-98b14828b/', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
     { icon: Mail, href: 'mailto:janasougata198@gmail.com', label: 'Email', color: 'from-red-600 to-red-800' },
-    { icon: Phone, href: 'https://wa.me/917821808132', label: 'WhatsApp', color: 'from-green-600 to-green-800' },
+    { icon: Phone, href: 'https://wa.me/917810808132', label: 'WhatsApp', color: 'from-green-600 to-green-800' },
   ];
 
   return (
