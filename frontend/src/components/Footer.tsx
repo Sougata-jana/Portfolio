@@ -12,13 +12,13 @@ export function Footer() {
   const socialLinks = [
     { 
       Icon: Github, 
-      href: 'https://github.com/Sougata-web',
+      href: 'https://github.com/Sougata-jana',
       label: 'GitHub',
       color: 'hover:bg-slate-700 hover:text-white'
     },
     { 
       Icon: Linkedin, 
-      href: 'https://linkedin.com/in/sougata-jana',
+      href: 'https://www.linkedin.com/in/sougata-jana-98b14828b/',
       label: 'LinkedIn',
       color: 'hover:bg-blue-600 hover:text-white'
     },
@@ -32,7 +32,7 @@ export function Footer() {
 
   const contactInfo = [
     { Icon: Mail, text: 'janasougata198@gmail.com', href: 'mailto:janasougata198@gmail.com' },
-    { Icon: MessageCircle, text: '+91 7821808132', href: 'https://wa.me/917821808132' },
+    { Icon: MessageCircle, text: '+91 7821808132', href: 'https://wa.me/917810808132' },
     { Icon: MapPin, text: 'West Bengal, India' },
   ];
 
