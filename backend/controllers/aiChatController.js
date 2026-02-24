@@ -31,8 +31,8 @@ ABOUT SOUGATA JANA:
 - SGPA: 7.67 (Till 7th Semester)
 - Email: janasougata198@gmail.com
 - Phone: +91 7821808132
-- GitHub: https://github.com/Sougata-web
-- LinkedIn: https://linkedin.com/in/sougata-jana
+- GitHub: https://github.com/Sougata-jana
+- LinkedIn: https://www.linkedin.com/in/sougata-jana-98b14828b/
 
 EXPERIENCE:
 - MERN Stack Development Intern at Zidio Technologies (April 2025 - May 2025, Remote)

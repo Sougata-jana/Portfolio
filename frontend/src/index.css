@@ -20,6 +20,13 @@
     transition-duration: var(--transition-duration);
   }
 
+  /* Hide default cursor on desktop for custom cursor */
+  @media (min-width: 768px) {
+    body, a, button, input, textarea {
+      cursor: none !important;
+    }
+  }
+
   .dark {
     color-scheme: dark;
   }
@@ -44,5 +51,22 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-purple-600 dark:bg-purple-500;
+  }
+
+  /* Custom scrollbar for chat */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/20 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/30;
   }
 }

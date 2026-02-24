@@ -198,9 +198,8 @@ export function Footer() {
             <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent mb-8" />
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-slate-600 dark:text-slate-400 text-sm text-center md:text-left">
-                © {currentYear} Sougata Jana. Crafted with{' '}
-                <Heart className="inline w-4 h-4 text-red-500 fill-red-500" />{' '}
-                using React & Framer Motion
+                © {currentYear} Sougata Jana. 
+               
               </p>
               
               {/* Scroll to Top Button */}
