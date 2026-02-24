@@ -52,9 +52,9 @@ export function About() {
             </p>
             <p className="text-slate-700 dark:text-white/70 leading-relaxed">
               Currently pursuing B.Tech in Computer Science and Engineering at
-              Sanaka Educational Trust’s Group of Institutions, MAKAUT. I'm constantly learning new
-              technologies and improving my skills to stay updated with industry
-              trends.
+              Sanaka Educational Trust’s Group of Institutions, MAKAUT. I'm
+              constantly learning new technologies and improving my skills to
+              stay updated with industry trends.
             </p>
           </div>
 
@@ -255,7 +255,7 @@ export function About() {
                   Higher Secondary (Class XII)
                 </h3>
                 <p className="text-green-700 dark:text-green-300 font-medium mb-1">
-                  Deshdattaabari United High School (HS)
+                  Deshdattabarh United High School (HS)
                 </p>
                 <p className="text-slate-600 dark:text-white/50 text-sm">
                   West Bengal, India • Percentage: 78%
